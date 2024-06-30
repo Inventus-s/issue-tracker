@@ -11,16 +11,17 @@ import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { newIssueSchema } from '@/app/validationSchema';
 import { z } from 'zod';
+import ErrorMessage from '@/app/components/ErrorMessage';
 
 type IssueForm = z.infer<typeof newIssueSchema>
 
 const NewIssuePage = () => {
   const [error, setError] = useState('');
   const router = useRouter();
-  const { register, control, handleSubmit, 
+  const { register, control, handleSubmit,
     formState: { errors } } = useForm<IssueForm>({
-    resolver: zodResolver(newIssueSchema)
-  });
+      resolver: zodResolver(newIssueSchema)
+    });
 
   return (
     <div className='max-w-xl'>
@@ -37,12 +38,12 @@ const NewIssuePage = () => {
           }
         })} >
         <TextField.Root placeholder='Title' {...register("title")} />
-       {errors.title && <Text color='red' as='p'>{errors.title.message}</Text>}
+        {<ErrorMessage>{errors.title?.message}</ErrorMessage>}
         <Controller name='description' control={control}
-          render={({ field }) => 
-          <SimpleMDE placeholder={'Description'} {...field} />} />
-       {errors.description && <Text color='red' as='p'>{errors.description.message}</Text>}
-
+          render={({ field }) =>
+            <SimpleMDE placeholder={'Description'} {...field} />} />
+        {<ErrorMessage>
+          {errors.description?.message}</ErrorMessage>}
         <Button>Create New Issue</Button>
       </form>
     </div>
