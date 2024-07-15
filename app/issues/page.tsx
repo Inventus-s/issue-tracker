@@ -2,13 +2,13 @@ import React from 'react'
 import { Button, Table } from '@radix-ui/themes'
 import prisma from '@/prisma/client'
 import IssueStatusBadge from '../components/IssueStatusBadge';
-import delay from 'delay';
+// import delay from 'delay';
 import IssueActionButton from './issueAction';
 import Link from '../components/Link';
 
 const issuePage = async () => {
   const issues = await prisma.issue.findMany();
-  await delay(2000); // using to test skeleton
+  // await delay(2000); // using to test skeleton
 
   return (
     <div>
