@@ -8,7 +8,7 @@ import IssueActionButton from './issueAction';
 
 const issuePage = async () => {
   const issues = await prisma.issue.findMany();
-  await delay(2000);
+  await delay(2000); // using to test skeleton
 
   return (
     <div>
@@ -26,7 +26,11 @@ const issuePage = async () => {
         <Table.Body>
           {issues.map(issue => (
             <Table.Row key={issue.id}>
-              <Table.Cell>{issue.title}
+
+              <Table.Cell>
+                <Link href={`/issues/${issue.id}`} >
+                  {issue.title}
+                </Link>
                 <div className='block md:hidden'>
                   <IssueStatusBadge status={issue.status} />
                 </div>
@@ -37,7 +41,7 @@ const issuePage = async () => {
           ))}
         </Table.Body>
       </Table.Root>
-    </div>
+    </div >
   )
 }
 
