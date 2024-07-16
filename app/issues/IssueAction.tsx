@@ -9,4 +9,4 @@ const IssueActionButton = () => {
     )
 }
 
-export default IssueActionButton
+export default IssueActionButton;

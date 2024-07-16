@@ -1,7 +1,7 @@
 import { IssueStatusBadge, Link } from '@/app/components';
 import prisma from '@/prisma/client';
 import { Table } from '@radix-ui/themes';
-import IssueActionButton from './issueAction';
+import IssueActionButton from './IssueAction';
 
 const issuePage = async () => {
   const issues = await prisma.issue.findMany();
