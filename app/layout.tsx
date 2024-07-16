@@ -3,10 +3,10 @@ import { Inter, Poppins } from "next/font/google";
 import '@radix-ui/themes/styles.css';
 import "./globals.css";
 import NavBar from "./NavBar";
-import { Theme, ThemePanel } from '@radix-ui/themes';
+import { Container, Theme, ThemePanel } from '@radix-ui/themes';
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const poppins = Poppins({ subsets: ["latin-ext"],weight: ['400', '800'],});
+const poppins = Poppins({ subsets: ["latin-ext"], weight: ['400', '800'], });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,7 +24,9 @@ export default function RootLayout({
         <Theme appearance="light" >
           <NavBar />
           <main className="p-5" >
-            {children}
+            <Container>
+              {children}
+            </Container>
           </main>
           {/* <ThemePanel /> --> Use to choose theme style */}
         </Theme>
