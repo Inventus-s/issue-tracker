@@ -6,9 +6,9 @@ import { useEffect, useState } from 'react'
 
 const AssigneeSelect = () => {
     const [user, setUser] = useState<User[]>();
-    useEffect(()=>{
+    useEffect(() => {
         const fetchUser = async () => {
-            const {data} = await axios.get('/api/user');
+            const { data } = await axios.get('/api/user');
             setUser(data);
         }
         fetchUser();
@@ -16,13 +16,12 @@ const AssigneeSelect = () => {
     return (
         <Select.Root>
             <Select.Trigger placeholder='Assign..' />
-                <Select.Content>
-                    <Select.Group>
-                        <Select.Label>Suggestion</Select.Label>
-                        {user?.map( user => <Select.Item key={user.id} value={user.id} >{user.name}</Select.Item> )}
-                        
-                    </Select.Group>
-                </Select.Content>
+            <Select.Content>
+                <Select.Group>
+                    <Select.Label>Suggestion</Select.Label>
+                    {user?.map(user => <Select.Item key={user.id} value={user.id} >{user.name}</Select.Item>)}
+                </Select.Group>
+            </Select.Content>
         </Select.Root>
     )
 }
