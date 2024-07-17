@@ -1,9 +1,10 @@
+import { Container, Theme } from '@radix-ui/themes';
+import '@radix-ui/themes/styles.css';
 import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
-import '@radix-ui/themes/styles.css';
+import AuthProvider from "./auth/Provider";
 import "./globals.css";
 import NavBar from "./NavBar";
-import { Container, Theme, ThemePanel } from '@radix-ui/themes';
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const poppins = Poppins({ subsets: ["latin-ext"], weight: ['400', '800'], });
@@ -21,15 +22,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <Theme appearance="light" >
-          <NavBar />
-          <main className="p-5" >
-            <Container>
-              {children}
-            </Container>
-          </main>
-          {/* <ThemePanel /> --> Use to choose theme style */}
-        </Theme>
+        <AuthProvider>
+          <Theme appearance="light" >
+            <NavBar />
+            <main className="p-5" >
+              <Container>
+                {children}
+              </Container>
+            </main>
+            {/* <ThemePanel /> --> Use to choose theme style */}
+          </Theme>
+        </AuthProvider>
       </body>
     </html>
   );
